@@ -265,10 +265,13 @@ public  class LLModel implements AutoCloseable {
             long len = 0;
             byte nextByte;
             do{
-                if(len==response.arrayLength()){
+                try {
+                    nextByte = response.getByte(len);
+                } catch(IndexOutOfBoundsException e){
+                    // Not sure if this can ever happen but just in case
+                    // the generation does not terminate in a Null (0) value.
                     throw new RuntimeException("Empty array or not null terminated");
                 }
-                nextByte= response.getByte(len);
                 len++;
                 if(nextByte!=0) {
                     bufferingForWholeGeneration.write(nextByte);
