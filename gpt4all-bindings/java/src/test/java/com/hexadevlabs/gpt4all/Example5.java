@@ -15,7 +15,7 @@ public class Example5 {
         // Optionally in case override to location of shared libraries is necessary
         //LLModel.LIBRARY_SEARCH_PATH = "C:\\Users\\felix\\gpt4all\\lib\\";
         StringBuffer b = new StringBuffer();
-        b.append("x".repeat(2060));
+        b.append("The ".repeat(2060));
         String prompt = b.toString();
 
 

@@ -79,10 +79,14 @@ public class Util {
                     "mpt-default",
                     "llamamodel-230511-default",
                     "llamamodel-230519-default",
-                    "llamamodel-mainline-default"
+                    "llamamodel-mainline-default",
+                    "replit-mainline-default",
+                    "replit-mainline-metal"
             };
 
             for (String libraryName : libraryNames) {
+
+                if(!isMac && libraryName.equals("replit-mainline-metal")) continue;
 
                 if(isWindows){
                     libraryName = libraryName + ".dll";

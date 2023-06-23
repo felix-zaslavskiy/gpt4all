@@ -262,8 +262,8 @@ public  class LLModel implements AutoCloseable {
             if(LLModel.OUTPUT_DEBUG)
                 System.out.print("Response token " + tokenID + " " );
 
-            // As of gpt4all 2.4.8 only GPTJ seems to respect the prompt is too long error.
-            // MPT and llama takes longer prompts than context length. Needs more investigating.
+            // For all models if input sequence in tokens is longer then model context length
+            // the error is generated.
             if(tokenID==-1){
                 throw new PromptIsTooLongException(response.getString(0, 1000, StandardCharsets.UTF_8));
             }
