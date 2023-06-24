@@ -80,18 +80,25 @@ public class Util {
                     "llamamodel-230511-default",
                     "llamamodel-230519-default",
                     "llamamodel-mainline-default",
+                    "llamamodel-mainline-metal",
                     "replit-mainline-default",
-                    "replit-mainline-metal"
+                    "replit-mainline-metal",
+                    "ggml-metal.metal"
             };
 
             for (String libraryName : libraryNames) {
 
-                if(!isMac && libraryName.equals("replit-mainline-metal")) continue;
+                if(!isMac && (
+                        libraryName.equals("replit-mainline-metal")
+                                || libraryName.equals("llamamodel-mainline-metal")
+                                || libraryName.equals("ggml-metal.metal"))
+                ) continue;
 
                 if(isWindows){
                     libraryName = libraryName + ".dll";
                 } else if(isMac){
-                    libraryName = "lib" + libraryName + ".dylib";
+                    if(!libraryName.equals("ggml-metal.metal"))
+                        libraryName = "lib" + libraryName + ".dylib";
                 } else if(isLinux) {
                     libraryName = "lib"+ libraryName + ".so";
                 }
